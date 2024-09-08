@@ -76,25 +76,6 @@ long double get_dist(Line a, vec b) {
     return mbs(a.a * b.x + a.b * b.y + a.c) / sqrtl(a.a * a.a + a.b * a.b);
 }
 
-struct segment {
-    vec a, b;
-
-    segment() = default;
-
-    segment(vec a, vec b) : a(a), b(b) {}
-
-    long double getd(vec c) {
-        long double br = 1e17;
-        br = min(getdist(a, c), getdist(b, c));
-        if (((c - a) * (b - a) > 0 && (c - b) * (a - b) > 0) ||
-            abs(getdist(a, b) - getdist(a, c) - getdist(c, b)) < eps) {
-            Line l = get_line(a, b);
-            br = min(br, get_dist(l, c));
-        }
-        return br;
-    }
-};
-
 auto main() -> signed {
     vector<ld> dists;
     vector<ld> dists2;
