@@ -1,4 +1,4 @@
-﻿#include <bits/stdc++.h>
+#include <bits/stdc++.h>
 //#include <bits/extc++.h>
 //#pragma GCC optimize("O3")
 //#pragma GCC target("avx2,bmi,bmi2,popcnt,lzcnt")
@@ -85,20 +85,15 @@ auto main() -> signed {
     vector<int> exs(k);
     for (auto& i : exs)
         cin >> i, i--;
-    try {
-        vector<vec> ps(n);
-        for (auto& i : ps)
-            cin >> i.x >> i.y;
-        dists.resize(n);
-        dists2.resize(n);
-        for (int i = 0; i < n; ++i) {
-            dists[i] = getdist(ps[i], ps[(i + 1) % n]);
-        }
-    } catch (...) {
-        while (true);
+    vector<vec> ps(n);
+    for (auto& i : ps)
+        cin >> i.x >> i.y;
+    dists.resize(n);
+    dists2.resize(n);
+    for (int i = 0; i < n; ++i) {
+        dists[i] = getdist(ps[i], ps[(i + 1) % n]);
     }
     for (auto& i : exs) {
-        if (i < 0 || i >= dists2.size())while (true);
         dists2[i] = dists[i];
     }
     ld evil = 0;
@@ -135,5 +130,4 @@ auto main() -> signed {
     min_ans = max(min_ans, (ld)0);
     cout << fixed << setprecision(10);
     cout << min_ans << '\n';
-
 }
